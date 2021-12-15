@@ -1,0 +1,170 @@
+		mongo db
+
+
+mongo db is a nosql database
+
+mongo db write in c++
+
+table -> collection
+
+mongo db is unstructured database
+
+mysql is structured query language
+
+
+commands : 
+
+mongo - this is a linux command for use mongodb in terminal
+
+use - this command is used to switched db
+
+list all dbs :
+
+> show dbs
+admin    0.000GB
+config   0.000GB
+k2oneiy  0.000GB
+local    0.000GB
+> 
+
+collection:
+
+use k2oneiy
+
+> use k2oneiy
+switched to db k2oneiy
+> 
+
+
+db.createColletcion("login")
+
+> db.createCollection("login")
+{ "ok" : 1 }
+
+show collections:
+
+> show collections
+login
+one
+> 
+
+
+drop Collection:
+
+> db.createCollection("drop")
+{ "ok" : 1 }
+> db.drop.drop()
+true
+> 
+
+
+drop database:
+
+>db.dropDatabase()
+
+>show dbs
+
+
+
+insert data in mongo:
+
+> db.login.insert({name:"deepak",password:"iasfsdf1232"})
+WriteResult({ "nInserted" : 1 })
+
+> db.login.find()
+{ "_id" : ObjectId("61a6f5e924d5ac395097b173"), "name" : "iyappan", "password" : "jaefjef12" }
+{ "_id" : ObjectId("61a6f6a7acdf5faf9f84aa75"), "name" : "deepak", "password" : "iasfsdf1232" }
+> 
+
+12 byte id hexadecimal id generate -> object _id
+
+
+json view:
+
+> db.login.find().pretty()
+{
+	"_id" : ObjectId("61a6f5e924d5ac395097b173"),
+	"name" : "iyappan",
+	"password" : "jaefjef12"
+}
+{
+	"_id" : ObjectId("61a6f6a7acdf5faf9f84aa75"),
+	"name" : "deepak",
+	"password" : "iasfsdf1232"
+}
+
+
+
+
+
+data count:
+
+> db.login.find().count()
+2
+> 
+
+insert one and insert many:
+
+
+> db.login.insertOne({name:"vel",password:"jfjsdfjsdf12224"})
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("61a6fa51acdf5faf9f84aa76")
+}
+
+> db.login.insertMany([{name:"ragul",password:"jsdfjsd12"},{name:"shiyan",password:"sdjfs12dn"}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("61a6fad3acdf5faf9f84aa77"),
+		ObjectId("61a6fad3acdf5faf9f84aa78")
+	]
+}
+> 
+
+find data:
+
+
+> db.login.find({name:"iyappan"})
+{ "_id" : ObjectId("61a6f5e924d5ac395097b173"), "name" : "iyappan", "password" : "jaefjef12" }
+> 
+
+> db.login.find({age:{$gt:39}})
+{ "_id" : ObjectId("61a6fc82acdf5faf9f84aa79"), "name" : "naveen", "age" : 40, "password" : "sjjsdf12324" }
+
+
+> db.login.find({age:{$gte:39}})
+{ "_id" : ObjectId("61a6fc82acdf5faf9f84aa79"), "name" : "naveen", "age" : 40, "password" : "sjjsdf12324" }
+
+
+> db.login.find({age:{$lt:39}})
+{ "_id" : ObjectId("61a6fc82acdf5faf9f84aa79"), "name" : "naveen", "age" : 40, "password" : "sjjsdf12324" }
+
+
+> db.login.find({age:{$lte:39}})
+{ "_id" : ObjectId("61a6fc82acdf5faf9f84aa79"), "name" : "naveen", "age" : 40, "password" : "sjjsdf12324" }
+
+
+
+> db.login.find({age:{$eq:40}})
+{ "_id" : ObjectId("61a6fc82acdf5faf9f84aa79"), "name" : "naveen", "age" : 40, "password" : "sjjsdf12324" }
+
+
+
+update:
+
+
+> 
+> db.login.update({name:"naveen"},{$set:{age:18}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.login.find()
+{ "_id" : ObjectId("61a6f5e924d5ac395097b173"), "name" : "iyappan", "password" : "jaefjef12" }
+{ "_id" : ObjectId("61a6f6a7acdf5faf9f84aa75"), "name" : "deepak", "password" : "iasfsdf1232" }
+{ "_id" : ObjectId("61a6fa51acdf5faf9f84aa76"), "name" : "vel", "password" : "jfjsdfjsdf12224" }
+{ "_id" : ObjectId("61a6fad3acdf5faf9f84aa77"), "name" : "ragul", "password" : "jsdfjsd12" }
+{ "_id" : ObjectId("61a6fad3acdf5faf9f84aa78"), "name" : "shiyan", "password" : "sdjfs12dn" }
+{ "_id" : ObjectId("61a6fc82acdf5faf9f84aa79"), "name" : "naveen", "age" : 18, "password" : "sjjsdf12324" }
+> 
+
+
+

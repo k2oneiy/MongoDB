@@ -1,0 +1,6 @@
+sudo pecl install mongodb
+
+composer require mongodb/mongodb --ignore-platform-reqs
+
+
+
